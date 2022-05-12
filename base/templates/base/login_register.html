@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<div>
+    {% for massage in messages %}
+        {{ massage }}
+    {% endfor %}
+    {% if page == 'login' %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Enter Username">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter password">
+            <p>Havent sign up yet? || <a href="{% url 'register' %}">Sign up</a></p>
+            <input type="submit" value="Login">
+        </form>
+    {% else %}
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Sign up">
+    </form>
+</div>
+{% endif %}
+{% endblock %}
